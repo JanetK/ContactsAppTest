@@ -1,23 +1,27 @@
 package pantano.thomas.hw2;
 
-import pantano.thomas.hw2.MainActivity;
+import java.util.Calendar;
+
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
 
+
 /**
- * This class tests isolated activities in MainActivity and the layout of the ListContacts view.  
+ * This class tests activities in MainActivity in isolation and the layout of the ListContacts view.  
  */
 public class MainActivityUnitTest extends ActivityUnitTestCase<MainActivity> {
 
 	private MainActivity mainActivity;
 	
 	public MainActivityUnitTest() {
+		
 		super(MainActivity.class);
 	}
 
 	
 	@Override
 	protected void setUp() throws Exception {
+		
 		super.setUp();
 		
         //launch MainActivity
@@ -28,17 +32,23 @@ public class MainActivityUnitTest extends ActivityUnitTestCase<MainActivity> {
 
 
 	public void testContactList_layout() {
+		
 		//verify that this view displays a list of contacts
 	}
 	
 	
 	public void testIntent_triggerViaOnListItemClick() {
 
-		
+		mainActivity.onListItemClick(null, null, 0, 0);
 		
 		Intent triggeredIntent = getStartedActivityIntent();
-		assertNotNull("Intent was null", triggeredIntent);
+		assertNotNull(triggeredIntent);
 
+		Contact actualContact = (Contact)triggeredIntent.getExtras().get("contact");
+		Contact expectedContact = new Contact("Tommy P", "Tommy", "Pantano", Calendar.getInstance().getTimeInMillis(), "717-687-7670", "410-993-5564", "717-808-5030", "tommy.r.pantano@gmail.com");
+		assertEquals(expectedContact.getDisplayName(), actualContact.getDisplayName());
+		assertEquals(expectedContact.getHomePhone(), actualContact.getHomePhone());
+		assertEquals(expectedContact.getEmailAddress(), actualContact.getEmailAddress());
 	}
 
 
