@@ -2,13 +2,11 @@ package pantano.thomas.hw2;
 
 import android.app.Instrumentation.ActivityMonitor;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.TouchUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 /**
- * This class tests MainActivity's activities that interact with different components.
+ * This class tests EditActivity's activities that interact with different components.
  */
 public class EditActivityFunctionalTest extends ActivityInstrumentationTestCase2<EditActivity> {
 
