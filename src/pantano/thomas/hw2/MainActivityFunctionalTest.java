@@ -34,7 +34,6 @@ public class MainActivityFunctionalTest extends ActivityInstrumentationTestCase2
 
 		EditActivity startedActivity = (EditActivity) monitor.waitForActivity();
 		assertNotNull(startedActivity);
-
 	}
 
 	protected void tearDown() throws Exception {

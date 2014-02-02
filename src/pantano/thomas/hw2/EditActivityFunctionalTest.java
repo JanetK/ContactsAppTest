@@ -1,15 +1,19 @@
 package pantano.thomas.hw2;
 
-import pantano.thomas.hw2.EditActivity;
-import pantano.thomas.hw2.R;
+import android.app.Instrumentation.ActivityMonitor;
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.TouchUtils;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * This class tests MainActivity's activities that interact with different components.
  */
 public class EditActivityFunctionalTest extends ActivityInstrumentationTestCase2<EditActivity> {
 
+	private static final String NEW_DISPLAYNAME = "new displayname"; 
+	
 	private EditActivity editActivity;
 
 	public EditActivityFunctionalTest() {
@@ -41,12 +45,38 @@ public class EditActivityFunctionalTest extends ActivityInstrumentationTestCase2
 		assertEquals(expected, ((EditText)editActivity.findViewById(R.id.emailAddressText)).getText().toString());
 	}
 
-	public void testEditView() {
-		//pass in a contact to edit
+	public void testEditView_saveEdit() {
 
-//	    Intent intent = new Intent(getInstrumentation().getTargetContext(), DisplayActivity.class);
-//      startActivity(intent, null, null);
+		//TODO: start the edit view with a contact
+		ActivityMonitor monitor = getInstrumentation().addMonitor(
+				DisplayActivity.class.getName(), null, false);
 
+		final EditText displayNameText = (EditText) editActivity.findViewById(R.id.displayNameText);
+		
+
+		// set text
+		editActivity.runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				displayNameText.setText(NEW_DISPLAYNAME);
+			}
+		});
+		getInstrumentation().waitForIdleSync();
+		
+		//click the 'save' actionbar button 
+		View saveAction =  (View) editActivity.findViewById(R.id.action_done);
+//		TouchUtils.clickView(this, saveAction);
+//		
+//		//verify that the changes are saved
+//		DisplayActivity displayActivity = (DisplayActivity) monitor.waitForActivity();
+//		TextView editedTextView = (TextView)displayActivity.findViewById(R.id.displayName);
+
+	}
+
+
+	public void testEditView_cancelEdit() {
+		
 	}
 
 	protected void tearDown() throws Exception {
