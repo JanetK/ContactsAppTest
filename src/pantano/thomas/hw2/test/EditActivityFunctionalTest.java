@@ -5,11 +5,14 @@ import pantano.thomas.hw2.R;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.EditText;
 
-public class EditActivityTest extends ActivityInstrumentationTestCase2<EditActivity> {
+/**
+ * This class tests MainActivity's activities that interact with different components.
+ */
+public class EditActivityFunctionalTest extends ActivityInstrumentationTestCase2<EditActivity> {
 
 	private EditActivity editActivity;
 
-	public EditActivityTest() {
+	public EditActivityFunctionalTest() {
 		super(EditActivity.class);
 	}
 
