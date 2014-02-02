@@ -1,4 +1,4 @@
-package pantano.thomas.hw2.test;
+package pantano.thomas.hw2;
 
 import pantano.thomas.hw2.EditActivity;
 import pantano.thomas.hw2.R;
